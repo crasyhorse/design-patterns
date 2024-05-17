@@ -1,4 +1,4 @@
-package org.brights.java;
+package org.brights.java.model;
 
 public enum Species {
     HUMAN,
