@@ -2,40 +2,28 @@ package org.brights.java.controller;
 
 import org.brights.java.model.Model;
 import org.brights.java.view.IView;
-import org.brights.java.view.JsonView;
-import org.brights.java.view.TextView;
-import org.brights.java.view.XmlView;
+import org.brights.java.view.View;
 
 import java.util.Scanner;
 
 public class Controller {
 
-    private IView view;
-    private Model model;
+    private final Model model;
+    private final View view;
 
-    public Controller( Model model) {
+    public Controller(Model model, View view) {
         this.model = model;
+        this.view = view;
     }
 
     public int getUserInput() {
         Scanner read = new Scanner(System.in);
         int num = read.nextInt();
 
-        if (num == 1) {
-            IView view = new XmlView(model);
-            view.show();
+        if (num >= 1 && num < 4) {
+            IView v = view.update(num);
+            v.show();
         }
-
-        if (num == 2) {
-            IView view = new JsonView(model);
-            view.show();
-        }
-
-        if (num == 3) {
-            IView view = new TextView(model);
-            view.show();
-        }
-
         return num;
     }
 }
